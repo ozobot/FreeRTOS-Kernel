@@ -1513,6 +1513,24 @@ UBaseType_t uxTaskGetStackHighWaterMark( TaskHandle_t xTask ) PRIVILEGED_FUNCTIO
 
 /**
  * task.h
+ * <PRE>void _uxTaskGetStackPointer( TaskHandle_t xTask );</PRE>
+ *
+ * INCLUDE_uxTaskGetStackHighWaterMark must be set to 1 in FreeRTOSConfig.h for
+ * this function to be available.
+ *
+ * Returns stack pointer of task stored in task control block.
+ *
+ * @param xTask Handle of the task associated with the stack to be checked.
+ * Set xTask to NULL to check the stack of the calling task.
+ *
+ * @return Stack pointer of task stored in task control block.
+ *
+ * @note Unofficial interface added for the purposes of python garbage collector
+ */
+StackType_t* _uxTaskGetStackTopPointer( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
+
+/**
+ * task.h
  * <PRE>configSTACK_DEPTH_TYPE uxTaskGetStackHighWaterMark2( TaskHandle_t xTask );</PRE>
  *
  * INCLUDE_uxTaskGetStackHighWaterMark2 must be set to 1 in FreeRTOSConfig.h for

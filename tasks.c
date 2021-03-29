@@ -3927,6 +3927,13 @@ static void prvCheckTasksWaitingTermination( void )
 #endif /* INCLUDE_uxTaskGetStackHighWaterMark */
 /*-----------------------------------------------------------*/
 
+/// Added to allow MicroPython properly run GC
+StackType_t* _uxTaskGetStackTopPointer( TaskHandle_t xTask )
+{
+  TCB_t *pxTCB = prvGetTCBFromHandle( xTask );
+  return (StackType_t*)pxTCB->pxTopOfStack;
+}
+
 #if ( INCLUDE_vTaskDelete == 1 )
 
     static void prvDeleteTCB( TCB_t * pxTCB )
